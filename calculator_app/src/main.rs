@@ -22,29 +22,35 @@ fn main() {
 
         print!("What is the second number?: ");
         read(&mut num2);
-
-        print!("What operation would you like to do? [+-*/]: ");
-        read(&mut operator);
-
-
         //println!("{} {} {}", num1, operator, num2);
 
         let num1: f32 = num1.trim().parse().unwrap();
         let num2: f32 = num2.trim().parse().unwrap();
+
+        //loop {
+        print!("What operation would you like to do? [+-*/]: ");
+        read(&mut operator);
         let operator: char = operator.trim().chars().next().unwrap();
 
-        let operators = String::from("+-*/");
-        if !operators.contains(operator){
-            println!("Unknown operator");
-            continue;
-        }
+        // let operators = String::from("+-*/");
+        // if operators.contains(operator){
+        //     break;
+        // } else {
+        //     println!("Unknown operator");
+        // }
+        //}
+        
         
         let result = match operator {
             '+' => num1 + num2,
             '-' => num1 - num2,
             '*' => num1 * num2,
             '/' => num1 / num2,
-            _ => panic!("error in operator")
+            _ => {
+                println!("Unknown operator");
+                continue;
+            }
+            //_ => panic!("error in operator")
         };
         println!("The result of {} {} {} = {}", num1, operator, num2, result);
     }
